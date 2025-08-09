@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>OmarioooCare</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="DataRepository\DataRepository\**" />
+		<Content Remove="DataRepository\DataRepository\**" />
+		<EmbeddedResource Remove="DataRepository\DataRepository\**" />
+		<None Remove="DataRepository\DataRepository\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.7" />
+	</ItemGroup>
+
+</Project>

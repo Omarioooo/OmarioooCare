@@ -1,0 +1,410 @@
+﻿@page
+@using OmarioooCare.Models
+@model OmarioooCare.Pages.DashboardModel
+@{
+    Layout = null;
+    var query = HttpContext.Request.Query;
+    var section = string.IsNullOrEmpty(query["section"])
+                    ? "patients"
+                    : query["section"].ToString().ToLower();
+     var showAll = query.ContainsKey("showAll") && 
+              query["showAll"].ToString().ToLower() == "true";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omariooo Hospital Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>OMARIOOO</h2>
+                <p>Hospital System</p>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="@(section == "patients" ? "active" : "")">
+                    <a href="/Dashboard?section=patients">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="@(section == "appointments" ? "active" : "")">
+                    <a href="/Dashboard?section=appointments">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Appointments</span>
+                    </a>
+                </li>
+                <li class="@(section == "staff" ? "active" : "")">
+                    <a href="/Dashboard?section=staff">
+                        <i class="fas fa-user-md"></i>
+                        <span>Medical Staff</span>
+                    </a>
+                </li>
+                <li class="@(section == "departments" ? "active" : "")">
+                    <a href="/Dashboard?section=departments">
+                        <i class="fas fa-pills"></i>
+                        <span>Departments</span>
+                    </a>
+                </li>
+                <li class="@(section == "rooms" ? "active" : "")">
+                    <a href="/Dashboard?section=rooms">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Rooms</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="/Login" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <section id="dashboard" class="content-section">
+                <header class="content-header">
+                    <h3>Dashboard Overview</h3>
+                    <div class="date-display">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>@Model.Now.ToString("dd-MM-yyyy")</span>
+                    </div>
+                </header>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-procedures"></i></div>
+                        <h3>Patients</h3>
+                        <p>@Model.Hospital.NumberOfCurrentPatients</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-user-nurse"></i></div>
+                        <h3>Medical staff</h3>
+                        <p>@Model.Hospital.NumberOfMedicalStaff</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                        <h3>Appointments</h3>
+                        <p>@Model.Hospital.NumberOfAppointements</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-bed"></i></div>
+                        <h3>Available Beds</h3>
+                        <p>@Model.Hospital.NumberOfAvailableBeds</p>
+                    </div>
+                </div>
+
+                <div class="resources-section">
+                    <div class="section-header">
+                        <h2>
+                            @(section switch
+                            {
+                                "patients" => "Patient Records",
+                                "appointments" => "Appointments",
+                                "staff" => "Medical Staff",
+                                "departments" => "Departments",
+                                "rooms" => "Rooms",
+                                _ => "Patient Records"
+                            })
+                        </h2>
+                        <div class="actions">
+                            @if (section == "patients" || section == "appointments")
+                            {
+                                <button type="button" class="add-btn" onclick="document.getElementById('addModal').style.display='flex'">
+                                    <i class="fas fa-plus"></i> Add @(section == "patients" ? "Patient" : "Appointment")
+                                </button>
+                            }
+                            <a class="show-all-btn" href="@($"/Dashboard?section={section}&showAll={!showAll}")">
+                                @(showAll ? "Show Less" : "Show All")
+                            </a>
+                        </div>
+                    </div>
+                    <table class="resources-table">
+
+                        @if (section == "patients")
+                        {
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>First Name</th>
+                                    <th>Second Name</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Patient patient in Model.PatientsList.Take(showAll ? Model.PatientsList.Count : 5))
+                                {   
+                                    <tr>
+                                        <td>@patient.Id</td>
+                                        <td>@patient.FirstName</td>
+                                        <td>@patient.SecondName</td>
+                                        <td>@patient.State</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+
+                        else if (section == "appointments")
+                        {
+                            <thead>
+                                <tr>
+                                    <th>Clinic ID</th>
+                                    <th>Clinic Name</th>
+                                    <th>Doctor Name</th>
+                                    <th>Department</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Clinic clinic in Model.ClinicsList.Take(showAll ? Model.ClinicsList.Count : 5))
+                                {   
+                                    <tr>
+                                        <td>@clinic.Id</td>
+                                        <td>@clinic.ClinicName</td>
+                                        <td>@clinic.DoctorName</td>
+                                        <td>@clinic.Department</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                        else if (section == "staff")
+                        {
+                            <thead>
+                                <tr>
+                                    <th>Staff Name</th>
+                                    <th>Manger</th>
+                                    <th>Room Number</th>
+                                    <th>Department</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (MedicalStaff sttaf in Model.MedicalStaffList.Take(showAll ? Model.MedicalStaffList.Count : 5))
+                                {
+                                  <tr>
+                                    <td>@sttaf.Name</td>
+                                    <td>@sttaf.Manger</td>
+                                    <td>@sttaf.RoomNumber</td>
+                                    <td>@sttaf.Department</td>
+                                  </tr>   
+                                }
+                            </tbody>
+                        }
+                        else if (section == "departments")
+                        {
+                            <thead>
+                                <tr>
+                                    <th>Department ID</th>
+                                    <th>Department</th>
+                                    <th>Manger ID</th>
+                                    <th>Manger Name</th>
+                                    <th>Patients</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Department department in Model.DepartmentsList.Take(showAll ? Model.DepartmentsList.Count : 5))
+                                {
+                                  <tr>
+                                     <td>@department.Id</td>
+                                     <td>@department.Dep</td>
+                                     <td>@department.MangerID</td>
+                                     <td>@department.MangerName</td>
+                                     <td>@department.NumOfPatient</td>
+                                  </tr>
+                                }
+                            </tbody>
+                        }
+                        else if (section == "rooms")
+                        {
+                            <thead>
+                                <tr>
+                                    <th>Room ID</th>
+                                    <th>Type</th>
+                                    <th>Department</th>
+                                    <th>Capacity</th>
+                                    <th>Availablity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Room room in Model.RoomsList.Take(showAll ? Model.RoomsList.Count : 5))
+                                {
+                                <tr>
+                                    <td>@room.RoomNumber</td>
+                                    <td>@room.RoomType</td>
+                                    <td>@room.Department</td>
+                                    <td>@room.RoomCapacity</td>
+                                    <td>@room.ISAvailable</td>
+                                </tr>
+                                }
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </section>
+        </div>
+        <div id="addModal" class="modal">
+             <div class="modal-content">
+                <span class="close" onclick="document.getElementById('addModal').style.display='none'">&times;</span>
+
+                <form method="post"
+                      asp-page-handler="@(section switch {
+                           "patients" => "AddToRoom",
+                           "appointments" => "BookAppointment",
+                           _ => "" })">
+                    @if (section == "patients")
+                    {
+                        <h3>Add New Patient</h3>
+                        <div>
+                            <label asp-for="patient.Id">Patient ID</label>
+                            <input asp-for="patient.Id" type="number" min="1" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.FirstName">First Name</label>
+                            <input asp-for="patient.FirstName" type="text" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.SecondName">Second Name</label>
+                            <input asp-for="patient.SecondName" type="text" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.ThirdName">Third Name</label>
+                            <input asp-for="patient.ThirdName" type="text" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.Gender">Gender</label>
+                            <select asp-for="patient.Gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.Phone">Phone</label>
+                            <input asp-for="patient.Phone" type="number" min="0" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.City">City</label>
+                            <input asp-for="patient.City" type="text" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.Place">Room ID</label>
+                            <input asp-for="patient.Place" type="number" min="1" max="135" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.DaysToStayInRoom">Days</label>
+                            <input asp-for="patient.DaysToStayInRoom" type="number" min="1" required />
+                        </div>
+
+                    }
+                    else if (section == "appointments")
+                    {
+                        <h3>Book Appointment</h3>
+                        <div>
+                            <label asp-for="patient.Id">Patient ID</label>
+                            <input asp-for="patient.Id" type="number" placeholder="Patient ID" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.FirstName">First Name</label>
+                            <input asp-for="patient.FirstName" type="text" placeholder="First Name" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.SecondName">Second Name</label>
+                            <input asp-for="patient.SecondName" type="text" placeholder="Second Name" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.ThirdName">Third Name</label>
+                            <input asp-for="patient.ThirdName" type="text" placeholder="Third Name" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.Gender">Gender</label>
+                            <select asp-for="patient.Gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.Phone">Phone</label>
+                            <input asp-for="patient.Phone" type="number" placeholder="Phone" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.City">City</label>
+                            <input asp-for="patient.City" type="text" placeholder="City" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="patient.Place">Clinic Name</label>
+                            <select asp-for="patient.Place" required >
+                                <option value="">Select Clinic</option>
+                                <option value="Heart Clinic A">Heart Clinic A</option>
+                                <option value="Heart Clinic B">Heart Clinic B</option>
+                                <option value="Heart Clinic C">Heart Clinic C</option>
+                                <option value="Oncology Clinic A">Oncology Clinic A</option>
+                                <option value="Oncology Clinic B">Oncology Clinic B</option>
+                                <option value="Oncology Clinic C">Oncology Clinic C</option>
+                                <option value="Pediatrics Clinic A">Pediatrics Clinic A</option>
+                                <option value="Pediatrics Clinic B">Pediatrics Clinic B</option>
+                                <option value="Pediatrics Clinic C">Pediatrics Clinic C</option>
+                                <option value="Cardiology Clinic A">Cardiology Clinic A</option>
+                                <option value="Cardiology Clinic B">Cardiology Clinic B</option>
+                                <option value="Neurology Clinic A">Neurology Clinic A</option>
+                                <option value="Neurology Clinic B">Neurology Clinic B</option>
+                                <option value="General Surgery Clinic A">General Surgery Clinic A</option>
+                                <option value="General Surgery Clinic B">General Surgery Clinic B</option>
+                                <option value="Radiology Clinic A">Radiology Clinic A</option>
+                                <option value="Radiology Clinic B">Radiology Clinic B</option>
+                                <option value="Orthopedics Clinic">Orthopedics Clinic</option>
+                                <option value="Dermatology Clinic">Dermatology Clinic</option>
+                                <option value="Anesthesiology Clinic">Anesthesiology Clinic</option>
+                                <option value="Psychiatry Clinic">Psychiatry Clinic</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label asp-for="AppointmentID">Appointment ID</label>
+                            <input asp-for="AppointmentID" type="number" placeholder="Appointment ID" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="Cost">Cost</label>
+                            <input asp-for="Cost" type="number" placeholder="Cost" required />
+                        </div>
+
+                        <div>
+                            <label asp-for="Status">Status</label>
+                            <input asp-for="Status" type="text" placeholder="Status" required />
+                        </div>
+
+                    }
+
+                    <div class="modal-actions">
+                        <button type="submit" class="primary-btn">Save</button>
+                        <button type="button" class="secondary-btn" onclick="document.getElementById('addModal').style.display='none'">Cancel</button>
+                    </div>
+                </form>
+             </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+﻿@page
+@model OmarioooCare.Pages.LandingModel
+@{
+    Layout = "_Layout";
+}
+
+<section id="home" class="home">
+    <div class="row">
+        <div class="images">
+            <img src="~/images/home.png" alt="Hospital facility illustration">
+        </div>
+        <div class="content">
+            <h1><span>Stay</span> Safe, <span>Stay</span> Healthy.</h1>
+            <p>Providing compassionate care with professional medical services.</p>
+            <a href="#about"><button class="button" aria-label="Read more about our services">Read More</button></a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about">
+    <h1 class="heading">About Our Facility</h1>
+    <h3 class="title">Learn and Explore Our Services</h3>
+    <div class="box-container">
+        <div class="box">
+            <div class="images">
+                <img src="/images/about-1.png" alt="Ambulance services illustration">
+            </div>
+            <div class="content">
+                <h3>Ambulance Services</h3>
+                <p>Our 24/7 ambulance services ensure rapid response and safe transport for emergencies.</p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="/images/about-2.png" alt="Emergency rooms illustration">
+            </div>
+            <div class="content">
+                <h3>Emergency Rooms</h3>
+                <p>State-of-the-art emergency rooms staffed with skilled professionals for urgent care.</p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="/images/about-3.png" alt="Free check-ups illustration">
+            </div>
+            <div class="content">
+                <h3>Free Check-Ups</h3>
+                <p>Complimentary health screenings to promote wellness and early detection.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="doctor" class="card">
+    <div class="container">
+        <h1 class="heading">Our Doctors</h1>
+        <h3 class="title">Meet Our Professional Doctors</h3>
+        <div class="box-container">
+            <div class="box">
+                <img src="/images/doctor-1.jpg" alt="Doctor profile image">
+                <div class="content">
+                    <a href="">
+                        <h2>Dr. AboOmer</h2>
+                    </a>
+                    <p>Cardiologist</p>
+                    <div class="icons">
+                        <a href="" class="fab fa-facebook-f" aria-label="Facebook profile"></a>
+                        <a href="" class="fab fa-twitter" aria-label="Twitter profile"></a>
+                        <a href="" class="fab fa-instagram" aria-label="Instagram profile"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <img src="/images/doctor-2.jpg" alt="Doctor profile image">
+                <div class="content">
+                    <a href="">
+                        <h2>Dr. Omariooo</h2>
+                    </a>
+                    <p>Neurologist</p>
+                    <div class="icons">
+                        <a href="" class="fab fa-facebook-f" aria-label="Facebook profile"></a>
+                        <a href="" class="fab fa-twitter" aria-label="Twitter profile"></a>
+                        <a href="" class="fab fa-instagram" aria-label="Instagram profile"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <img src="/images/doctor-3.jpg" alt="Doctor profile image">
+                <div class="content">
+                    <a href="">
+                        <h2>Dr. Omar Mohamed</h2>
+                    </a>
+                    <p>Pediatrician</p>
+                    <div class="icons">
+                        <a href="" class="fab fa-facebook-f" aria-label="Facebook profile"></a>
+                        <a href="" class="fab fa-twitter" aria-label="Twitter profile"></a>
+                        <a href="" class="fab fa-instagram" aria-label="Instagram profile"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="review" class="review">
+    <h1 class="heading">Our Patient Reviews</h1>
+    <h3 class="title">What Our Patients Say About Us</h3>
+    <div class="box-container">
+        <div class="box">
+            <i class="fas fa-quote-left" aria-hidden="true"></i>
+            <p>Exceptional care and attention from the staff made my recovery smooth and comfortable.</p>
+            <div class="images">
+                <img src="/images/img-1.png" alt="Patient review image">
+                <div class="info">
+                    <h3>John Doe</h3>
+                    <span>Date: 11/2024</span>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <i class="fas fa-quote-left" aria-hidden="true"></i>
+            <p>The doctors were professional and compassionate, highly recommend their services.</p>
+            <div class="images">
+                <img src="/images/img-2.png" alt="Patient review image">
+                <div class="info">
+                    <h3>Jane Smith</h3>
+                    <span>Date: 11/2024</span>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <i class="fas fa-quote-left" aria-hidden="true"></i>
+            <p>Outstanding facility with a caring team, made me feel at ease during my visit.</p>
+            <div class="images">
+                <img src="/images/img-3.png" alt="Patient review image">
+                <div class="info">
+                    <h3>Emily Brown</h3>
+                    <span>Date: 11/2024</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h1 class="heading">Contact Us</h1>
+    <h3 class="title">We're Here for You Anytime</h3>
+    <div class="row">
+        <div class="images">
+            <img src="/images/form.png" alt="Contact form illustration">
+        </div>
+        <form class="form-container" method="post">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="FullName" placeholder="Full Name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" placeholder="Enter your email" required>
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="Phone" placeholder="Phone" pattern="[0-9]{10,15}">
+            <label for="message">Message</label>
+            <textarea id="message" name="Message" cols="30" rows="10" placeholder="Your message" required></textarea>
+            <input type="submit" value="Send" aria-label="Submit contact form">
+        </form>
+    </div>
+</section>
+
+<section id="blog" class="blog">
+    <h1 class="heading">Blog</h1>
+    <h3 class="title">Health and Wellness Insights</h3>
+    <div class="box-container">
+        <div class="box">
+            <img src="/images/blog 1.png" alt="Diabetes blog image">
+            <div class="content">
+                <a href="https://diatribe.org/understanding-diabetes" target="_blank">
+                    <h2>Understanding Diabetes</h2>
+                </a>
+                <p>Learn about managing diabetes with proper diet and lifestyle changes.</p>
+                <a href="https://diatribe.org/understanding-diabetes" target="_blank"><button class="button" aria-label="Learn more about diabetes">Learn More</button></a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="/images/blog 2.png" alt="COVID-19 vaccine blog image">
+            <div class="content">
+                <a href="https://ukhsa.blog.gov.uk/2025/06/26/whos-eligible-for-the-2025-covid-19-vaccine-or-autumn-booster/" target="_blank">
+                    <h2>COVID-19 Vaccine Updates</h2>
+                </a>
+                <p>Stay informed about the latest developments in COVID-19 vaccines.</p>
+                <a href="https://ukhsa.blog.gov.uk/2025/06/26/whos-eligible-for-the-2025-covid-19-vaccine-or-autumn-booster/" target="_blank"><button class="button" aria-label="Learn more about COVID-19 vaccines">Learn More</button></a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="/images/blog 3.png" alt="Epidemic prevention blog image">
+            <div class="content">
+                <a href="https://sangerinstitute.blog/2025/05/27/how-can-data-help-prevent-the-next-pandemic/" target="_blank">
+                    <h2>Preventing Epidemics</h2>
+                </a>
+                <p>Tips and strategies to protect yourself and your community from epidemics.</p>
+                <a href="https://sangerinstitute.blog/2025/05/27/how-can-data-help-prevent-the-next-pandemic/" target="_blank"><button class="button" aria-label="Learn more about epidemic prevention">Learn More</button></a>
+            </div>
+        </div>
+    </div>
+</section>

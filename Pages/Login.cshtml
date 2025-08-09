@@ -1,0 +1,42 @@
+﻿@page
+@model OmarioooCare.Pages.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omariooo Hospital Login</title>
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="welcome-header">
+            <h2>Welcome to</h2>
+            <h1>OMARIOOO-Care Hospital</h1>
+        </div>
+        
+        <form class="login-form" method="post">
+            <div class="credentials-hint">
+                <p>Default-Login: <strong>Omar Mohamed</strong> / <strong>48</strong></p>
+            </div>
+            
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="name" name="Name" placeholder="Enter username" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="id">Password</label>
+                <input type="number" id="id" name="ID" placeholder="Enter ID" required>
+            </div>
+            
+            <button type="submit" class="login-btn">LOGIN</button>
+        </form>
+    </div>
+</body>
+</html>

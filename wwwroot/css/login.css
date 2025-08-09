@@ -1,0 +1,131 @@
+﻿/* ==================== Reset & Base ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ==================== Login Container ==================== */
+.login-container {
+    background-color: #fff;
+    padding: 50px 60px;
+    border-radius: 12px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 550px;
+}
+
+/* ==================== Welcome Header ==================== */
+.welcome-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+    .welcome-header h2 {
+        color: #0188df;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 5px;
+    }
+
+    .welcome-header h1 {
+        color: #0188df;
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+
+/* ==================== Credentials Hint ==================== */
+.credentials-hint {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-left: 4px solid #0188df;
+}
+
+    .credentials-hint p {
+        color: #555;
+        font-size: 1.1rem;
+    }
+
+/* ==================== Form Elements ==================== */
+.input-group {
+    margin-bottom: 30px;
+}
+
+    .input-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 20px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+    }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #0188df;
+            box-shadow: 0 0 0 3px rgba(1, 136, 223, 0.2);
+        }
+
+/* ==================== Login Button ==================== */
+.login-btn {
+    width: 100%;
+    padding: 20px;
+    background-color: #0188df;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+    .login-btn:hover {
+        background-color: #0177c7;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(1, 136, 223, 0.3);
+    }
+
+/* ==================== Responsive ==================== */
+@media (max-width: 600px) {
+    .login-container {
+        padding: 40px 30px;
+        margin: 0 20px;
+    }
+
+    .welcome-header h1 {
+        font-size: 2rem;
+    }
+
+    .input-group input {
+        padding: 18px;
+    }
+
+    .login-btn {
+        padding: 18px;
+    }
+}

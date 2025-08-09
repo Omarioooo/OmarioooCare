@@ -1,0 +1,404 @@
+﻿/* ==================== Google Font ==================== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* ==================== Root Variables ==================== */
+:root {
+    --blue: #0188df;
+    --black: #444d53;
+    --wight: #fff;
+}
+
+/* ==================== Global Styles ==================== */
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    text-transform: capitalize;
+    outline: none;
+    box-sizing: border-box;
+    transition: all linear .2s;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+/* ==================== Buttons ==================== */
+.button {
+    height: 3.5rem;
+    width: 15rem;
+    background: var(--blue);
+    color: var(--wight);
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    margin: 1rem 0;
+    border: .1rem solid var(--blue);
+}
+
+    .button:hover {
+        background: var(--wight);
+        color: var(--blue);
+        letter-spacing: .2rem;
+    }
+
+/* ==================== Headings & Titles ==================== */
+.heading {
+    text-align: center;
+    font-size: 4rem;
+    padding: 1rem;
+    padding-top: 8rem;
+    color: var(--blue);
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--black);
+    font-weight: 300;
+}
+
+/* ==================== Header & Navigation ==================== */
+header {
+    width: 96%;
+    background: var(--wight);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    z-index: 1000;
+}
+
+body {
+    padding-top: 80px;
+}
+
+header a {
+    color: var(--black);
+}
+
+    header a:hover {
+        color: var(--blue);
+    }
+
+header .logo {
+    font-size: 3rem;
+}
+
+    header .logo span {
+        color: var(--blue);
+    }
+
+/* Navbar Links */
+header .navbar ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+    header .navbar ul li {
+        margin: 0 1rem;
+    }
+
+        header .navbar ul li a {
+            font-size: 2rem;
+            color: var(--black);
+        }
+
+            header .navbar ul li a:hover {
+                color: var(--blue);
+            }
+
+/* Hamburger Icon (mobile) */
+header .fa-bars {
+    font-size: 3rem;
+    color: var(--blue);
+    cursor: pointer;
+    display: none;
+}
+
+header .fa-times {
+    transform: rotate(180deg);
+}
+
+/* Navbar Toggle via Checkbox */
+#menu-toggle:checked ~ .navbar {
+    top: 5.5rem;
+    opacity: 1;
+}
+
+/* Sticky Header Effect */
+.header-active {
+    top: 0;
+    width: 100%;
+    box-shadow: .1rem .3rem rgba(0,0,0,.3);
+}
+
+/* ==================== Home Section ==================== */
+.home {
+    min-height: 100vh;
+    padding-top: 10rem;
+}
+
+    .home .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 85%;
+        margin: 0 auto;
+    }
+
+        .home .row .images img {
+            height: 75vh;
+        }
+
+    .home .content h1 {
+        font-size: 4rem;
+        color: var(--black);
+    }
+
+        .home .content h1 span {
+            color: var(--blue);
+        }
+
+    .home .content p {
+        font-size: 1.9rem;
+        color: var(--black);
+    }
+
+/* ==================== About Section ==================== */
+.about {
+    background-color: #f9f9f9;
+}
+
+    .about .box-container {
+        padding: 4rem 0;
+    }
+
+        .about .box-container .box {
+            width: 75%;
+            margin: 4rem auto;
+            border-radius: .5rem;
+            box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+            display: flex;
+            align-items: center;
+            background: var(--wight);
+        }
+
+            .about .box-container .box .images {
+                height: 40rem;
+                width: 50%;
+            }
+
+                .about .box-container .box .images img {
+                    height: 100%;
+                    width: 100%;
+                }
+
+            .about .box-container .box .content {
+                width: 50%;
+                padding: 2rem;
+            }
+
+                .about .box-container .box .content h3 {
+                    font-size: 3rem;
+                    color: var(--blue);
+                }
+
+                .about .box-container .box .content p {
+                    font-size: 1.5rem;
+                    color: var(--black);
+                }
+
+            /* Alternate Row Reverse */
+            .about .box-container .box:nth-child(even) {
+                flex-flow: row-reverse;
+            }
+
+/* ==================== Cards ==================== */
+.card .box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+    .card .box-container .box {
+        width: 30rem;
+        margin: 2rem 1rem;
+        border-radius: .5rem;
+        box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+    }
+
+        .card .box-container .box img {
+            height: 40rem;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card .box-container .box .content {
+            padding: 1rem 1.3rem;
+            text-align: center;
+        }
+
+/* ==================== Reviews ==================== */
+.review .box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+}
+
+    .review .box-container .box {
+        width: 35rem;
+        text-align: center;
+        margin: 4rem 1.5rem;
+        box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+    }
+
+/* ==================== Contact Section ==================== */
+.contact {
+    background: #eee;
+}
+
+    .contact .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5rem 0;
+    }
+
+        .contact .row .images img {
+            width: 50vw;
+            height: 70vh;
+        }
+
+        .contact .row .form-container {
+            width: 50%;
+            padding-right: 6rem;
+        }
+
+            .contact .row .form-container input,
+            .contact .row .form-container textarea {
+                background: var(--wight);
+                border-radius: 5rem;
+                margin: 1rem 0;
+                color: var(--blue);
+            }
+
+/* ==================== Blog Section ==================== */
+.blog .box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+    .blog .box-container .box {
+        width: 35rem;
+        margin: 2rem 1rem;
+        border-radius: .5rem;
+        box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+    }
+
+/* ==================== Footer ==================== */
+.footer {
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+}
+
+    .footer .box {
+        width: 30rem;
+        margin: 2rem;
+        text-align: center;
+    }
+
+        .footer .box .logo {
+            font-size: 3rem;
+            color: var(--wight);
+        }
+
+        .footer .box p,
+        .footer .box a {
+            color: var(--wight);
+        }
+
+    /* Footer Credit */
+    .footer .credit {
+        width: 85%;
+        font-size: 2rem;
+        color: var(--wight);
+        text-align: center;
+        border-top: .2rem solid var(--wight);
+    }
+
+/* ==================== Responsive Design ==================== */
+@media (max-width:768px) {
+    html {
+        font-size: 55%;
+    }
+
+    /* Show Hamburger Menu */
+    header .fa-bars {
+        display: block;
+    }
+
+    /* Hide Navbar by Default */
+    header .navbar {
+        position: fixed;
+        top: -100rem;
+        left: 0;
+        width: 100%;
+        background: var(--wight);
+        opacity: 0;
+    }
+
+        /* Navbar Links Vertical */
+        header .navbar ul {
+            flex-flow: column;
+            padding: 2rem 0;
+        }
+
+    /* Show Navbar When Active */
+    header .nav-toggle {
+        top: 5.5rem;
+        opacity: 1;
+    }
+
+    /* Home Responsive */
+    .home .row {
+        flex-flow: column;
+    }
+
+        .home .row .images img {
+            width: 100%;
+        }
+
+    /* About Responsive */
+    .about .box-container .box {
+        flex-flow: column;
+        width: 90%;
+    }
+
+    /* Contact Responsive */
+    .contact .row {
+        flex-flow: column;
+    }
+
+        .contact .row .images img {
+            height: 50vh;
+            width: 90vw;
+        }
+
+        .contact .row .form-container {
+            width: 90%;
+            padding: 0;
+        }
+}
