@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>OmarioooCare</RootNamespace>
+		<UserSecretsId>aae70469-ee44-46fe-bcf2-aa09ea7cb9f9</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
